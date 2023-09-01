@@ -4,18 +4,18 @@ import { AppContext } from '../context/AppContext';
 const BUDGET_MAX_VALUE = 20000;
 
 const Budget = () => {
-  const { budget,currency, dispatch, expenses } = useContext(AppContext);
+  const { budget, currency, dispatch, totalExpenses } = useContext(AppContext);
 
   const onChangeBudgetHandler = (event) => {
     const enteredValue = Number(event.target.value);
 
-    let totExpenses = 0;
-    if (expenses) {
-            const totalExpenses = expenses.reduce((total, item) => {
-            return (total = total + item.cost);
-        }, 0);
-        totExpenses = totalExpenses;
-    }
+    //let totExpenses = 0;
+    //if (expenses) {
+    //        const totalExpenses = expenses.reduce((total, item) => {
+    //       return (total = total + item.cost);
+    //    }, 0);
+    //    totExpenses = totalExpenses;
+    //}
 
     // check if the entered value is a number
     if (Number.isNaN(enteredValue)) {
@@ -29,10 +29,10 @@ const Budget = () => {
       return;
     }
 
-    if (enteredValue < totExpenses) {
+    if (enteredValue < totalExpenses) {
       alert(
         "You cannot reduce the budget value lower than the spending " +
-          currency + totExpenses
+          currency + totalExpenses
       );
       return;
     } else {
